@@ -53,10 +53,7 @@ int main(int argc, char ** argv)
     node->attachObject(ent);
 
 
-    while(true)
-    {
-        root->renderOneFrame();
-    }
+    root->startRendering();
 
     return 0;
 }
