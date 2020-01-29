@@ -40,17 +40,15 @@ int main(int argc, char ** argv)
 
     window->addViewport(cam);
 
-    ResourceGroupManager::getSingleton().addResourceLocation("/usr/share/OGRE/Media/materials/scripts","FileSystem","General",true);
-
     ManualObject * manualObject=scnMgr->createManualObject("cubeTest");
-    manualObject->begin("");
+    manualObject->begin("BaseWhiteNoLighting");
     {
         manualObject->position( -2, 0, 0 );
-        manualObject->colour( 1, 0, 0, 1 );
+        manualObject->colour( 1,1,0);
         manualObject->position( 2, 0, 0 );
-        manualObject->colour( 1, 0, 0, 1 );
+        manualObject->colour( 1,0,1);
         manualObject->position( 0, 2, 0 );
-        manualObject->colour( 1, 0, 0, 1 );
+        manualObject->colour( ColourValue::Red);
         manualObject->triangle( 0, 1, 2 );
         manualObject->end();
     }
