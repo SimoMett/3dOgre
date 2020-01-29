@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <OgreApplicationContext.h>
+#include <OgreWindowEventUtilities.h>
 #include "InputManager.h"
 
 using namespace Ogre;
@@ -21,12 +22,14 @@ public:
 private:
 
     std::string appName;
-    std::unique_ptr<Ogre::Root> root;
+    std::unique_ptr<Root> root;
 
     RenderWindow * window;
     SceneManager * sceneManager;
 
     InputManager inputManager;
+
+    WindowEventListener windowEventListener;
 };
 
 

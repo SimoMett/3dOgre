@@ -11,7 +11,7 @@
 using std::cout;
 using std::endl;
 
-MainApp::MainApp(std::string appName) : appName(appName)
+MainApp::MainApp(std::string appName) : appName(appName), windowEventListener()
 {
     root = std::make_unique<Ogre::Root>("","");
 
@@ -24,7 +24,14 @@ void MainApp::start()
     window=root->initialise(true,appName);
     sceneManager=root->createSceneManager();
 
-    inputManager=InputManager(*window);
+    //inputManager=InputManager(*window);
+
+    Entity * entity=sceneManager->createEntity("Cube","/usr/share/OGRE/Media/models/cube.mesh");
+    SceneNode * node=sceneManager->getRootSceneNode()->createChildSceneNode();
+    node->attachObject(entity);
+
+    Light* l = sceneManager->createLight("MainLight");
+    l->setPosition(20,80,50);
 
     root->startRendering();
 }

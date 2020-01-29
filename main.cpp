@@ -1,11 +1,11 @@
 #include <iostream>
 
-//#define OGRE_STATIC_LIB
 #include <Ogre.h>
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include <RTShaderSystem/OgreRTShaderSystem.h>
+#include "MainApp.h"
 
 using namespace Ogre;
 
@@ -14,7 +14,6 @@ using std::endl;
 
 int main(int argc, char ** argv)
 {
-
     Root * root=new Root("","","");
     SceneManager * scnMgr=root->createSceneManager();
 
