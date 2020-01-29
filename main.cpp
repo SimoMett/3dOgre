@@ -23,9 +23,6 @@ int main(int argc, char ** argv)
 
     RenderWindow * window=root->initialise(true);
 
-    // register our scene with the RTSS
-    //RTShader::ShaderGenerator* shadergen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
-    //shadergen->addSceneManager(scnMgr);
     // without light we would just get a black screen
     Ogre::Light* light = scnMgr->createLight("MainLight");
     Ogre::SceneNode* lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
@@ -40,14 +37,27 @@ int main(int argc, char ** argv)
     cam->setNearClipDistance(5); // specific to this sample
     cam->setAutoAspectRatio(true);
     camNode->attachObject(cam);
-    // and tell it to render into the main window
+
     window->addViewport(cam);
-    // finally something to render
 
-    ResourceGroupManager::getSingleton().addResourceLocation("/usr/share/OGRE/Media/models","FileSystem","General",true);
+    ResourceGroupManager::getSingleton().addResourceLocation("/usr/share/OGRE/Media/materials/scripts","FileSystem","General",true);
 
-    Ogre::Entity* ent = scnMgr->createEntity("fish.mesh");
-    ent->setDisplaySkeleton(true);
+    ManualObject * manualObject=scnMgr->createManualObject("cubeTest");
+    manualObject->begin("");
+    {
+        manualObject->position( -2, 0, 0 );
+        manualObject->colour( 1, 0, 0, 1 );
+        manualObject->position( 2, 0, 0 );
+        manualObject->colour( 1, 0, 0, 1 );
+        manualObject->position( 0, 2, 0 );
+        manualObject->colour( 1, 0, 0, 1 );
+        manualObject->triangle( 0, 1, 2 );
+        manualObject->end();
+    }
+    MeshPtr triang=manualObject->convertToMesh("cube");
+
+    Ogre::Entity* ent = scnMgr->createEntity(triang);
+    //ent->setDisplaySkeleton(true);
     Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
     node->attachObject(ent);
 
