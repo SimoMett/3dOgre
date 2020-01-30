@@ -1,19 +1,33 @@
 #ifndef InputManager_H
 #define InputManager_H
 
+#include <Ogre.h>
+#include <OgreRenderWindow.h>
+#include <OgreInput.h>
 #include <ois/OIS.h>
 
-#include <OgreRenderWindow.h>
+using namespace Ogre;
 
-class InputManager /*: public OIS::KeyListener, public OIS::MouseListener, public OIS::JoyStickListener*/
+class InputManager : public FrameListener, protected OIS::KeyListener
 {
 public:
-    InputManager(){};
-    InputManager(Ogre::RenderWindow & window);
+    InputManager(Ogre::RenderWindow * renderWindow);
 
-private:
-    OIS::InputManager * inputManager;
+    void start();
+
+    bool exit() const {return shouldExit;}
+
+    bool frameRenderingQueued(const FrameEvent& evt);
+
+    bool keyPressed(const OIS::KeyEvent &evt) ;
+    bool keyReleased(const OIS::KeyEvent &evt) ;
+
+protected:
 
     OIS::Keyboard * keyboard;
+    OIS::InputManager * inputSystem;
+
+    bool shouldExit;
+
 };
 #endif

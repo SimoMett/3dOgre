@@ -4,7 +4,6 @@
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
-#include <RTShaderSystem/OgreRTShaderSystem.h>
 #include "MainApp.h"
 
 using namespace Ogre;
@@ -59,8 +58,10 @@ int main(int argc, char ** argv)
     Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
     node->attachObject(ent);
 
+    /*InputManager inputManager(window);
+    inputManager.start();
+    root->addFrameListener(&inputManager);*/
 
     root->startRendering();
-
     return 0;
 }
