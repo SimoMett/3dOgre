@@ -1,52 +1,44 @@
 #include <iostream>
-#include <sstream>
 #include "InputManager.h"
 
 using std::cout;
 using std::endl;
 
-InputManager::InputManager(Ogre::RenderWindow * renderWindow): shouldExit(false)
+InputManager::InputManager()
 {
-    OIS::ParamList paramList;
 
-    unsigned int size;
-    std::ostringstream out;
-    out<<size;
-
-    std::string wind;
-
-    renderWindow->getCustomAttribute(wind,&size);
-
-    auto pair=std::make_pair(wind,out.str());
-    paramList.insert(pair);
-
-    inputSystem=OIS::InputManager::createInputSystem(paramList);
 }
 
-void InputManager::start()
+void InputManager::init(Ogre::RenderWindow *renderWindow)
 {
-    keyboard= (OIS::Keyboard*)(inputSystem->createInputObject(OIS::OISKeyboard,true));
+    OIS::ParamList paramList;
+    std::ostringstream out;
+    size_t hnd=0;
+    renderWindow->getCustomAttribute("WINDOW",&hnd);
+    out<<hnd;
+    paramList.insert(std::make_pair(std::string("WINDOW"),out.str()));
+    inputSystem=OIS::InputManager::createInputSystem(paramList);
+
+    keyboard=(OIS::Keyboard*)inputSystem->createInputObject(OIS::OISKeyboard,true);
     keyboard->setEventCallback(this);
 }
 
-bool InputManager::frameRenderingQueued(const FrameEvent& evt)
+void InputManager::capture()
 {
     if(keyboard)
         keyboard->capture();
-    return true;
 }
 
 bool InputManager::keyPressed(const OIS::KeyEvent &evt)
 {
-    if(evt.key==OIS::KC_ESCAPE)
+    if(evt.key == OIS::KC_F4 && keyboard->isKeyDown(OIS::KC_LMENU))
     {
         cout << "exit"<<endl;
-        shouldExit=true;
     }
     return true;
 }
+
 bool InputManager::keyReleased(const OIS::KeyEvent &evt)
 {
-    cout << "ba"<<endl;
     return true;
 }

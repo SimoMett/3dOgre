@@ -53,27 +53,16 @@ int main(int argc, char ** argv)
     Ogre::SceneNode* node = scnMgr->getRootSceneNode()->createChildSceneNode();
     node->attachObject(ent);
 
-    /*InputManager inputManager(window);
-    inputManager.start();
-    root->addFrameListener(&inputManager);*/
+    InputManager inputManager;
+    inputManager.init(window);
 
-    OIS::ParamList paramList;
-    std::ostringstream out;
-    size_t hnd=0;
-    window->getCustomAttribute("WINDOW",&hnd);
-    out<<hnd;
-    paramList.insert(std::make_pair(std::string("WINDOW"),out.str()));
-    OIS::InputManager * inputManager=OIS::InputManager::createInputSystem(paramList);
 
-    OIS::Keyboard * keyboard=(OIS::Keyboard*)inputManager->createInputObject(OIS::OISKeyboard,true);
 
     bool exit=false;
     while(!exit)
     {
+        inputManager.capture();
         root->renderOneFrame();
-        keyboard->capture();
-        if(keyboard->isKeyDown(OIS::KC_ESCAPE))
-            exit=true;
     }
     return 0;
 }

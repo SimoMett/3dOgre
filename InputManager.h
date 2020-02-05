@@ -8,26 +8,22 @@
 
 using namespace Ogre;
 
-class InputManager : public FrameListener, protected OIS::KeyListener
+class InputManager : public OIS::KeyListener
 {
 public:
-    InputManager(Ogre::RenderWindow * renderWindow);
+    InputManager();
 
-    void start();
+    void init(Ogre::RenderWindow * renderWindow);
 
-    bool exit() const {return shouldExit;}
+    void capture();
 
-    bool frameRenderingQueued(const FrameEvent& evt);
-
-    bool keyPressed(const OIS::KeyEvent &evt) ;
-    bool keyReleased(const OIS::KeyEvent &evt) ;
+    bool keyPressed(const OIS::KeyEvent & evt) override ;
+    bool keyReleased(const OIS::KeyEvent & evt) override ;
 
 protected:
 
     OIS::Keyboard * keyboard;
     OIS::InputManager * inputSystem;
-
-    bool shouldExit;
 
 };
 #endif
