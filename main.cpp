@@ -5,6 +5,7 @@
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include "MainApp.h"
+#include "DFFObject.h"
 
 using namespace Ogre;
 
@@ -56,7 +57,7 @@ int main(int argc, char ** argv)
     InputManager inputManager;
     inputManager.init(window);
 
-
+    DFFObject dffFile("../SimpleCube.dff");
 
     bool exit=false;
     while(!exit)

@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
 
-add_executable(3dOgre main.cpp MainApp.h InputManager.h InputManager.cpp)
+add_executable(3dOgre main.cpp MainApp.h InputManager.h InputManager.cpp DFFObject.cpp DFFObject.h)
 
 target_link_libraries(3dOgre OgreBites OgreRTShaderSystem OIS)
