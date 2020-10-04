@@ -7,13 +7,17 @@
 
 #include <iostream>
 #include <fstream>
+#include "DffSection.h"
 
 using namespace std;
 
-class DFFObject
+class DffObject
 {
 public:
-    DFFObject(const string & file);
+    DffObject(const string & file);
+
+private:
+    DffSection mainSection;
 };
 
 
