@@ -7,7 +7,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "DffSection.h"
+#include <vector>
+#include "Clump.h"
 
 using namespace std;
 
@@ -17,7 +18,10 @@ public:
     DffObject(const string & file);
 
 private:
-    DffSection mainSection;
+    dff::Clump mainSection;
+    vector<dff::Clump> clumps;
+
+    void findClumpSections(char * buffer, unsigned int size);
 };
 
 

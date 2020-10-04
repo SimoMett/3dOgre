@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "DffObject.h"
+#include "Section.h"
 
 DffObject::DffObject(const string & file)
 {
@@ -17,10 +18,35 @@ DffObject::DffObject(const string & file)
         char * buffer=new char[size];
         dffFile.read(buffer,size);
 
-        this->mainSection=DffSection((unsigned char *)buffer,size);
+        findClumpSections(buffer,size);
+        this->mainSection=clumps[0];
 
         delete[] buffer;
     }
 
     dffFile.close();
+}
+
+void DffObject::findClumpSections(char *buffer, unsigned int size)
+{
+    unsigned int cursorPos=0;
+
+    struct SectionHeader
+    {
+        unsigned int sectionType;
+        unsigned int dataSize;
+        unsigned int timeStamp;
+    };
+
+    bool bExit=false;
+    while(!bExit)
+    {
+        if(cursorPos==size)
+            bExit=true;
+
+        SectionHeader sectionHeader=*(SectionHeader*)(buffer)[0];
+        if(sectionHeader.sectionType==dff::eDffSectionType::rwCLUMP)
+            dff::Clump clumpSection((unsigned char*)buffer,sectionHeader.dataSize);
+        cursorPos+=sectionHeader.dataSize;
+    }
 }
