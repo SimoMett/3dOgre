@@ -5,7 +5,7 @@
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include "MainApp.h"
-#include "DFFObject.h"
+#include "../dff/DffObject.h"
 #include "RenderSystems/GL/OgreGLPlugin.h"
 
 using namespace Ogre;
@@ -40,14 +40,14 @@ int main(int argc, char ** argv)
     manualObject->begin("BaseWhiteNoLighting");
     {
         manualObject->position( -2, 0, 0 );
-        manualObject->colour( 1,1,0);
+        manualObject->colour( 0,1,0);
         manualObject->position( 2, 0, 0 );
-        manualObject->colour( 1,0,1);
+        manualObject->colour( 0,0,1);
         manualObject->position( 0, 2, 0 );
         manualObject->colour( ColourValue::Red);
         manualObject->triangle( 0, 1, 2 );
-        manualObject->end();
     }
+    manualObject->end();
     MeshPtr triang=manualObject->convertToMesh("cube");
 
     Ogre::Entity* ent = scnMgr->createEntity(triang);
@@ -58,7 +58,7 @@ int main(int argc, char ** argv)
     InputManager inputManager;
     inputManager.init(window);
 
-    DFFObject dffFile("../SimpleCube.dff");
+    DffObject dffFile("../SimpleCube.dff");
 
     bool exit=false;
     while(!exit)
