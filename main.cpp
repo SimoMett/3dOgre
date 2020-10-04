@@ -6,6 +6,7 @@
 #include <OgreWindowEventUtilities.h>
 #include "MainApp.h"
 #include "DFFObject.h"
+#include "RenderSystems/GL/OgreGLPlugin.h"
 
 using namespace Ogre;
 
@@ -17,7 +18,7 @@ int main(int argc, char ** argv)
     Root * root=new Root("","","");
     SceneManager * scnMgr=root->createSceneManager();
 
-    root->loadPlugin("/usr/lib/OGRE/RenderSystem_GL");
+    root->installPlugin(new GLPlugin());
 
     root->setRenderSystem(root->getAvailableRenderers()[0]);
 
