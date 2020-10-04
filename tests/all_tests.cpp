@@ -9,7 +9,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/exception/exception.hpp>
 
-#include "../src/dff/DffSection.h"
+#include "../src/dff/Section.h"
 
 BOOST_AUTO_TEST_CASE(my_test)
 {
