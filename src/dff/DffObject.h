@@ -19,7 +19,7 @@ public:
 
 private:
     dff::Clump mainSection;
-    std::vector<dff::Clump> clumps;
+    std::vector<dff::Clump> clumps;//A DFF binary can contain multiple Clump sections
 
     void findClumpSections(char * buffer, unsigned int size);
 };

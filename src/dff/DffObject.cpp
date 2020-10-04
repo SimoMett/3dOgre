@@ -41,12 +41,12 @@ void DffObject::findClumpSections(char *buffer, unsigned int size)
     bool bExit=false;
     while(!bExit)
     {
-        if(cursorPos==size)
-            bExit=true;
-
         SectionHeader sectionHeader=*(SectionHeader*)(buffer)[0];
         if(sectionHeader.sectionType==dff::eDffSectionType::rwCLUMP)
             dff::Clump clumpSection((unsigned char*)buffer,sectionHeader.dataSize);
         cursorPos+=sectionHeader.dataSize;
+
+        if(sectionHeader.dataSize==0 || cursorPos==size)
+            bExit=true;
     }
 }
