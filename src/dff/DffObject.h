@@ -19,7 +19,7 @@ public:
 
 private:
     dff::Clump mainSection;
-    vector<dff::Clump> clumps;
+    std::vector<dff::Clump> clumps;
 
     void findClumpSections(char * buffer, unsigned int size);
 };

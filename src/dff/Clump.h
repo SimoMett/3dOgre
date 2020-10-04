@@ -29,7 +29,7 @@ namespace dff
             unsigned int numberOfCameras;
         };
 
-        vector<Atomic> atomics;
+        //vector<Atomic> atomics;
         //vector<Light> lights;
         //no camera vector
     };

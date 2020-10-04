@@ -5,7 +5,7 @@
 #include <OgreRoot.h>
 #include <OgreWindowEventUtilities.h>
 #include "MainApp.h"
-#include "../dff/DffObject.h"
+#include "dff/DffObject.h"
 #include "RenderSystems/GL/OgreGLPlugin.h"
 
 using namespace Ogre;
