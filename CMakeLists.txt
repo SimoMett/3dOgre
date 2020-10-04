@@ -7,7 +7,7 @@ find_package(ZLIB REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(OGRE 1.12 REQUIRED COMPONENTS Bites RTShaderSystem)
 
-add_executable(3dOgre src/main.cpp src/MainApp.h src/InputManager.h src/InputManager.cpp dff/DffObject.cpp dff/DffObject.h dff/DffSection.cpp dff/DffSection.h)
+add_executable(3dOgre src/main.cpp src/MainApp.h src/InputManager.h src/InputManager.cpp src/dff/DffObject.cpp src/dff/DffObject.h src/dff/DffSection.cpp src/dff/DffSection.h)
 
 target_link_libraries(3dOgre OgreBites OgreRTShaderSystem OIS)
 

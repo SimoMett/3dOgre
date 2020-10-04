@@ -58,7 +58,7 @@ int main(int argc, char ** argv)
     InputManager inputManager;
     inputManager.init(window);
 
-    DffObject dffFile("../SimpleCube.dff");
+    DffObject dffFile("../res/SimpleCube.dff");
 
     bool exit=false;
     while(!exit)
