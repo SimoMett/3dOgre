@@ -9,24 +9,16 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/exception/exception.hpp>
 
-#include "../src/dff/Section.h"
+#include "../src/dff/DffObject.h"
 
-BOOST_AUTO_TEST_CASE(my_test)
+
+BOOST_AUTO_TEST_CASE(test_1)
 {
-    using namespace std;
     try
     {
-        ifstream dffFile;
-        dffFile.open("SimpleCube.dff");
-            if(!dffFile.good()) throw "file not good";
-
-        unsigned int size=dffFile.tellg();
-        char * buffer=new char[size];
-        dffFile.read(buffer,size);
+        DffObject dffFile("SimpleCube.dff");
 
 
-        dffFile.close();
-        delete[] buffer;
     }
     catch (exception & e)
     {

@@ -8,7 +8,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "Clump.h"
+#include <list>
+#include "Section.h"
 
 using namespace std;
 
@@ -18,10 +19,9 @@ public:
     DffObject(const string & file);
 
 private:
-    dff::Clump mainSection;
-    std::vector<dff::Clump> clumps;//A DFF binary can contain multiple Clump sections
 
-    void findClumpSections(char * buffer, unsigned int size);
+    std::list<dff::Section> mainSections;
+
 };
 
 

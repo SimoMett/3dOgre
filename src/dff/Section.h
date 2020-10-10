@@ -29,6 +29,10 @@ namespace dff
     class Section
     {
     public:
+
+        //static Section parseSectionFromData(unsigned char * data, unsigned int size);
+        static Section parseSectionFromData(char * data, unsigned int & size);
+
         Section();
         /*
          * data := header+data bytes, size := size of 'data'
@@ -49,8 +53,8 @@ namespace dff
 
         HeaderStruct header;
         unsigned char * data;
-        Section * parent;
-        std::vector<Section> children;
+        //Section * parent;
+        //std::vector<Section> children;
     };
 }
 
