@@ -23,7 +23,7 @@ DffObject::DffObject(const string & file)
         while (bytesToRead!=0)
         {
             cout << "reading from byte "<<(size-bytesToRead)<<endl;
-            mainSections.push_back(dff::Section::parseSectionFromData(buffer+(size-bytesToRead),bytesToRead));
+            mainSections.push_back(unique_ptr<dff::Section>(dff::Section::parseSectionFromData(buffer+(size-bytesToRead),bytesToRead)));
             if(bytesToRead!=0)
             {
                 cout << "bytesToRead= "<<bytesToRead<<endl;

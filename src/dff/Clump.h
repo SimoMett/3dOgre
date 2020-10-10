@@ -6,10 +6,14 @@
 #define INC_3DOGRE_CLUMP_H
 
 
+#include <list>
 #include <vector>
 #include "Atomic.h"
 #include "Section.h"
+#include "FrameList.h"
+#include "GeometryList.h"
 
+using std::list;
 using std::vector;
 
 namespace dff
@@ -29,9 +33,17 @@ namespace dff
             unsigned int numberOfCameras;
         };
 
-        //vector<Atomic> atomics;
-        //vector<Light> lights;
-        //no camera vector
+        ClumpStruct clumpStruct;
+        FrameList frameList;
+        GeometryList geometryList;
+        list<Atomic> atomicsList;
+
+        //vector<unsigned int> lightFrameIds;
+        //list<Light> lightsList;
+
+        //camera stuff
+
+        //Extension extension
     };
 }
 

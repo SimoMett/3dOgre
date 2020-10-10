@@ -9,6 +9,7 @@
 #include <fstream>
 #include <vector>
 #include <list>
+#include <memory>
 #include "Section.h"
 
 using namespace std;
@@ -20,7 +21,7 @@ public:
 
 private:
 
-    std::list<dff::Section> mainSections;
+    std::list<unique_ptr<dff::Section>> mainSections;
 
 };
 

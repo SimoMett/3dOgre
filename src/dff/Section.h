@@ -31,7 +31,7 @@ namespace dff
     public:
 
         //static Section parseSectionFromData(unsigned char * data, unsigned int size);
-        static Section parseSectionFromData(char * data, unsigned int & size);
+        static Section*  parseSectionFromData(char * data, unsigned int & size);
 
         Section();
         /*

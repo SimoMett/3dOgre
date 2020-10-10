@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Section.h"
+#include "Clump.h"
 
 using namespace std;
 
@@ -22,10 +23,24 @@ dff::Section::Section(unsigned char *data, unsigned int size): data(nullptr), he
         this->data[i]=data[i+12];
 }
 
-dff::Section dff::Section::parseSectionFromData(char *data, unsigned int & bytesToRead)
+dff::Section * dff::Section::parseSectionFromData(char *data, unsigned int & bytesToRead)
 {
-    dff::Section section((unsigned char*)data,bytesToRead);
-    bytesToRead-=section.getDataSectionSize();
+    dff::Section * section = nullptr;
+
+    eDffSectionType sectionType=static_cast<eDffSectionType>(((int*)data)[0]);
+    switch (sectionType)
+    {
+        case dff::eDffSectionType::rwCLUMP:
+        {
+            section = new dff::Clump((unsigned char *) data, bytesToRead);
+        }
+
+        default:
+        {
+            section = new dff::Section((unsigned char *) data, bytesToRead);
+        }
+    }
+    bytesToRead-=section->getDataSectionSize();
     return section;
 }
 
